@@ -17,7 +17,7 @@ while True:
     cv2.imshow("System 1",frame)
     if Plastico1 is True:
         print("Plastic Detected")
-        Systems.System2_Funct(cap[1],model,port,5)
+        Systems.System2_Funct(window,cap[1],model,port,5)
     k = cv2.waitKey(1)
     if k==27:
         break
