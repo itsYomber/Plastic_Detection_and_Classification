@@ -7,7 +7,7 @@ port = serial.Serial('COM3', 9600, timeout=1)
 model = torch.hub.load('ultralytics/yolov5','custom',path='D:/Universidad/Proyecto de grado/YoloDetec/model2/plastic_2.pt')
 
 #Captura del vídeo
-cap = []
+cap = [] ; window = False
 cap[0] = cv2.VideoCapture(0)
 cap[1] = cv2.VideoCapture(1)
 

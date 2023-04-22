@@ -19,7 +19,7 @@ def System1_Funct(frame):
             cv2.putText(frame,"Plasti: "+str(area1),(cx-20,cy-20),cv2.FONT_ITALIC,2,(255,255,255),2)
             return True
 
-def System2_Funct(cap,model,port,min):
+def System2_Funct(window,cap,model,port,min):
     
     end = time.time() + 60*min
     while time.time() >= end:
