@@ -19,7 +19,7 @@ def System1_Funct(frame):
             cv2.putText(frame,"Plasti: "+str(area1),(cx-20,cy-20),cv2.FONT_ITALIC,2,(255,255,255),2)
             return True
 
-def System2_Funct(cap,model,min):
+def System2_Funct(cap,model,port,min):
     
     end = time.time() + 60*min
     while time.time() >= end:
@@ -52,36 +52,43 @@ def System2_Funct(cap,model,min):
                 area1 = cv2.contourArea(c)
                 if area1>frame.size*percen:
                     cv2.drawContours(frame,[c],-1,(30,255,255),3)
+                    port.write(b'a')
                     print("Plastico Amarillo Detectado")
             for c in cntrsRed:
                 area2 = cv2.contourArea(c)
                 if area2>frame.size*percen:
                     cv2.drawContours(frame,[c],-1,(0,0,255),3)
+                    port.write(b'b')
                     print("Plastico Rojo Detectado")
             for c in cntrsGreen:
                 area3 = cv2.contourArea(c)
                 if area3>frame.size*percen:
                     cv2.drawContours(frame,[c],-1,(255,0,0),3)
+                    port.write(b'c')
                     print("Plastico Verde Detectado")
             for c in cntrsBlue:              
                 area4 = cv2.contourArea(c)
                 if area4>frame.size*percen:
                     cv2.drawContours(frame,[c],-1,(255,0,0),3)
+                    port.write(b'd')
                     print("Plastico Azul Detectado")                    
             for c in cntrsTrans:              
                 area5 = cv2.contourArea(c)
                 if area5>frame.size*percen:
                     cv2.drawContours(frame,[c],-1,(170,165,170),3)
+                    port.write(b'e')
                     print("Plastico Transparente Detectado")                   
             for c in cntrsBlack:                
                 area6 = cv2.contourArea(c)
                 if area6>frame.size*percen:
                     cv2.drawContours(frame,[c],-1,(170,165,170),3)
+                    port.write(b'f')
                     print("Plastico Negro Detectado")                   
             for c in cntrsMalt:               
                 area7 = cv2.contourArea(c)
                 if area7>frame.size*percen:
                     cv2.drawContours(frame,[c],-1,(3,48,131),3)
+                    port.write(b'g')
                     print("Plastico Malta Detectado")                    
             cv2.imshow('Detection',crop); window = True           
         elif window:           
