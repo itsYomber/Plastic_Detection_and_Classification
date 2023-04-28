@@ -1,10 +1,10 @@
 import cv2
 import torch
-import Systems
+import Systems_V2
 import serial
 
 #port = serial.Serial('COM9', 9600, timeout=1)
-model = torch.hub.load('ultralytics/yolov5','custom',path='D:/Universidad/Proyecto de grado/YoloDetec/model3/plastic_3.pt')
+model = torch.hub.load('ultralytics/yolov5','custom',path='D:/Universidad/Proyecto de grado/YoloDetec/model3/plastic_2.pt')
 
 #Captura del vídeo
 cap = [] ; window=False
@@ -13,12 +13,12 @@ cap1 = cv2.VideoCapture(2)
 
 while True:
     ret, crop = cap0.read()
-    Plastico1 = Systems.System1_Funct(crop)
+    Plastico1 = Systems_V2.System1_Funct(crop,model)
     cv2.imshow('system1',crop)
     if Plastico1 is True:
         print("Plastic Detected")
         #Systems.System2_Funct(window,cap1,port,model,10)
-    Systems.System2_Funct(window,cap1,model,Plastico1)
+    Systems_V2.System2_Funct(window,cap1,Plastico1)
     #port.write(b'')
     k = cv2.waitKey(1)
     if k==27:
