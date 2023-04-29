@@ -4,6 +4,7 @@ import imutils
 import time
 
 def System1_Funct(frame,model):
+    frame = frame[0:1080,0:1500]
     detect = model(frame)
     coord = detect.xyxy[0].numpy()
     if coord.size != 0:
