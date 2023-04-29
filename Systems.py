@@ -4,23 +4,23 @@ import imutils
 import time
 
 def System1_Funct(frame,model):
-    frame = frame[0:1080,0:1500]
-    detect = model(frame)
+    frame2 = frame[0:480,0:520]
+    detect = model(frame2)
     coord = detect.xyxy[0].numpy()
     if coord.size != 0:
         print("**Bottle Detected**")
-        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+        hsv = cv2.cvtColor(frame2, cv2.COLOR_BGR2HSV)
         plastic = np.array([[0,12,114],[179,76,178]])
         cntsPlastic = imutils.grab_contours(cv2.findContours(cv2.inRange(hsv,plastic[0],plastic[1]),cv2.RETR_LIST,cv2.CHAIN_APPROX_SIMPLE))
         for c in cntsPlastic:
             area1 = cv2.contourArea(c)
             if area1>200:
-                cv2.drawContours(frame,[c],-1,(255,0,0),3)
+                cv2.drawContours(frame2,[c],-1,(255,0,0),3)
                 M = cv2.moments(c)
                 cx = int(M["m10"]/M["m00"])
                 cy = int(M["m01"]/M["m00"])
-                cv2.circle(frame,(cx,cy),7,(255,255,255),-1)
-                cv2.putText(frame,"Plasti: "+str(area1),(cx-20,cy-20),cv2.FONT_ITALIC,2,(255,255,255),2)
+                cv2.circle(frame2,(cx,cy),7,(255,255,255),-1)
+                cv2.putText(frame2,"Plasti: "+str(area1),(cx-20,cy-20),cv2.FONT_ITALIC,2,(255,255,255),2)
                 return True
         
 
