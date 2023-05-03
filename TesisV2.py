@@ -13,7 +13,8 @@ cap1 = cv2.VideoCapture(2)
 
 while True:
     ret, crop = cap0.read()
-    Plastico1 = Systems_V2.System1_Funct(crop,model)
+    frame2 = crop[0:480,0:520]
+    Plastico1 = Systems_V2.System1_Funct(frame2,model)
     cv2.imshow('system1',crop)
     if Plastico1 is True:
         print("Plastic Detected")
