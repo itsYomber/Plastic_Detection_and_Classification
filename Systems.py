@@ -3,8 +3,8 @@ import cv2
 import imutils
 import time
 
-def System1_Funct(frame,model):
-    frame2 = frame[0:480,0:520]
+def System1_Funct(frame2,model):
+    
     detect = model(frame2)
     coord = detect.xyxy[0].numpy()
     if coord.size != 0:
