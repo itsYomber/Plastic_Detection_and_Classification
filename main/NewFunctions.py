@@ -99,20 +99,13 @@ def System2(cap,model):
         if size != 0:
             coord = [round(e) for e in coord[0][0:4]]
             crop = hsv[coord[1]:coord[3],coord[0]:coord[2]]
-            maskYellow = cv2.inRange(crop,yellow[0],yellow[1])
-            countYellow = np.count_nonzero(maskYellow)
-            maskRed = cv2.inRange(crop,red[0],red[1])
-            countRed = np.count_nonzero(maskRed)
-            maskGreen = cv2.inRange(crop,green[0],green[1])
-            countGreen = np.count_nonzero(maskGreen)
-            maskBlue = cv2.inRange(crop,blue[0],blue[1])
-            countBlue = np.count_nonzero(maskBlue)
-            maskTrans = cv2.inRange(crop,trans[0],trans[1])
-            countTrans = np.count_nonzero(maskTrans)
-            maskBlack = cv2.inRange(crop,black[0],black[1])
-            countBlack = np.count_nonzero(maskBlack)
-            maskMalt = cv2.inRange(crop,malt[0],malt[1])
-            countMalt = np.count_nonzero(maskMalt)
+            countYellow = np.count_nonzero(cv2.inRange(crop,yellow[0],yellow[1]))
+            countRed = np.count_nonzero(cv2.inRange(crop,red[0],red[1]))
+            countGreen = np.count_nonzero(cv2.inRange(crop,green[0],green[1]))
+            countBlue = np.count_nonzero(cv2.inRange(crop,blue[0],blue[1]))
+            countTrans = np.count_nonzero(cv2.inRange(crop,trans[0],trans[1]))
+            countBlack = np.count_nonzero(cv2.inRange(crop,black[0],black[1]))
+            countMalt = np.count_nonzero(cv2.inRange(crop,malt[0],malt[1]))
             
             if (countYellow >= crop.size * 0.1):
                 print('Plastico Amarillo Detectado')
