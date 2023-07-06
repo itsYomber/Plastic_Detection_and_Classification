@@ -82,13 +82,14 @@ def SystemIR(cap):
     
 def System2(cap,model):
     
-    yellow = np.array([[0,12,114],[179,76,178]])
-    red = np.array([[166,60,50],[214,255,255]])
-    green = np.array([[40,39,54],[94,255,255]])
-    blue = np.array([[40,99,128],[162,255,255]])
-    trans = np.array([[34,34,56],[234,176,165]])
-    black = np.array([[95,31,14],[117,92,93]])
-    malt = np.array([[0,21,59],[44,252,205]])
+    yellow = np.array([[19,83,211],[35,145,248]])#Pending
+    red = np.array([[160,30,160],[179,255,255]]) #Checked
+    green = np.array([[50,115,123],[101,247,230]])#Checked
+    blue = np.array([[60,117,190],[179,255,255]])#Checked
+    trans = np.array([[6,9,75],[179,30,254]])#Checked
+    #black = np.array([[0,0,89],[20,68,248]]) #Incorrect
+    malt = np.array([[0,65,0],[11,240,150]]) #Checked
+    white = np.array([[21,0,135],[136,69,253]]) #Checked
     
     while True:
         ret, frame = cap.read()
@@ -104,8 +105,9 @@ def System2(cap,model):
             countGreen = np.count_nonzero(cv2.inRange(crop,green[0],green[1]))
             countBlue = np.count_nonzero(cv2.inRange(crop,blue[0],blue[1]))
             countTrans = np.count_nonzero(cv2.inRange(crop,trans[0],trans[1]))
-            countBlack = np.count_nonzero(cv2.inRange(crop,black[0],black[1]))
+            #countBlack = np.count_nonzero(cv2.inRange(crop,black[0],black[1]))
             countMalt = np.count_nonzero(cv2.inRange(crop,malt[0],malt[1]))
+            countWhite = np.count_nonzero(cv2.inRange(crop,white[0],white[1]))
             
             if (countYellow >= crop.size * 0.1):
                 print('Plastico Amarillo Detectado')
@@ -117,10 +119,12 @@ def System2(cap,model):
                 print('Plastico Azul Detectado')
             if (countTrans >= crop.size * 0.1):
                 print('Plastico Transparente Detectado')        
-            if (countBlack >= crop.size * 0.1):
-                print('Plastico Negro Detectado')    
+            #if (countBlack >= crop.size * 0.1):
+                #print('Plastico Negro Detectado')    
             if (countMalt >= crop.size * 0.1):
                 print('Plastico Malta Detectado')
+            if (countWhite >= crop.size * 0.1):
+                print('Plastico Blanco Detectado')
                 
         cv2.imshow('Detector de Color', np.squeeze(detection.render())) 
         k = cv2.waitKey(1)
