@@ -83,13 +83,14 @@ def SystemIR(cap):
 def System2(cap,model):
     
     yellow = np.array([[19,83,211],[35,145,248]])#Pending
-    red = np.array([[160,30,160],[179,255,255]]) #Checked
-    green = np.array([[50,115,123],[101,247,230]])#Checked
+    red = np.array([[160,30,120],[179,255,255]]) #Checked
+    green = np.array([[50,95,93],[101,247,240]])#Checked
     blue = np.array([[60,117,190],[179,255,255]])#Checked
-    trans = np.array([[6,9,75],[179,30,254]])#Checked
+    trans = np.array([[6,9,75],[179,30,234]])#Checked
     #black = np.array([[0,0,89],[20,68,248]]) #Incorrect
     malt = np.array([[0,65,0],[11,240,150]]) #Checked
-    white = np.array([[21,0,135],[136,69,253]]) #Checked
+    white = np.array([[21,0,115],[136,69,243]]) #Checked
+    ValidationRange = 0.06
     
     while True:
         ret, frame = cap.read()
@@ -109,21 +110,21 @@ def System2(cap,model):
             countMalt = np.count_nonzero(cv2.inRange(crop,malt[0],malt[1]))
             countWhite = np.count_nonzero(cv2.inRange(crop,white[0],white[1]))
             
-            if (countYellow >= crop.size * 0.1):
+            if (countYellow >= crop.size * ValidationRange):
                 print('Plastico Amarillo Detectado')
-            if (countRed >= crop.size * 0.1):
+            if (countRed >= crop.size * ValidationRange):
                 print('Plastico Rojo Detectado')
-            if (countGreen >= crop.size * 0.1):
+            if (countGreen >= crop.size * ValidationRange):
                 print('Plastico Verde Detectado')
-            if (countBlue >= crop.size * 0.1):
+            if (countBlue >= crop.size * ValidationRange):
                 print('Plastico Azul Detectado')
-            if (countTrans >= crop.size * 0.1):
+            if (countTrans >= crop.size * ValidationRange):
                 print('Plastico Transparente Detectado')        
-            #if (countBlack >= crop.size * 0.1):
+            #if (countBlack >= crop.size * ValidationRange):
                 #print('Plastico Negro Detectado')    
-            if (countMalt >= crop.size * 0.1):
+            if (countMalt >= crop.size * ValidationRange):
                 print('Plastico Malta Detectado')
-            if (countWhite >= crop.size * 0.1):
+            if (countWhite >= crop.size * ValidationRange):
                 print('Plastico Blanco Detectado')
                 
         cv2.imshow('Detector de Color', np.squeeze(detection.render())) 
