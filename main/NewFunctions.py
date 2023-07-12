@@ -1,6 +1,5 @@
 import numpy as np
 import cv2
-import imutils 
 
 class CircularBuffer:
     def __init__(self, size):
@@ -28,7 +27,7 @@ class CircularBuffer:
             return self.buffer[:self.head]
 
 
-def System1(cap,model):
+def System1(cap,model,port):
     register = CircularBuffer(2)
     register.start(0)
     while True:
@@ -43,10 +42,10 @@ def System1(cap,model):
         register.insert(maximo)
         elements = register.get_elements()
         prom = sum(elements)/len(elements)
-        #if prom >= 0.45:
-            #print("----Botella Detectada----")
-        #else:
-            #print("#### Botella no Detectada ####")
+        if prom >= 0.43:
+            port.write(b'B')
+        else:
+            port.write(b'b')
             
         cv2.imshow('Detector de Botellas', np.squeeze(detection.render()))  
         k = cv2.waitKey(1)
@@ -56,7 +55,7 @@ def System1(cap,model):
     cap.release()
     cv2.destroyWindow('Detector de Botellas')
     
-def SystemIR(cap):
+def SystemIR(cap,port):
     register = CircularBuffer(30)
     register.start(0)
     while True:
@@ -70,17 +69,17 @@ def SystemIR(cap):
         elements = register.get_elements()
         prom = sum(elements)/len(elements)
         cv2.imshow('System IR',mask)        
-        #if prom >= 500:
-            #print('----Plastico Detectado----')
-        #else:
-            #print('****Plastico No Detectado****')
+        if prom >= 500:
+            port.write(b'P')
+        else:
+            port.write(b'p')
         k = cv2.waitKey(1)
         if k==27:
             break
     cap.release()
     cv2.destroyWindow('System IR')
     
-def System2(cap,model):
+def System2(cap,model,port):
     
     yellow = np.array([[19,83,211],[35,145,248]])#Pending
     red = np.array([[160,30,120],[179,255,255]]) #Checked
@@ -95,9 +94,10 @@ def System2(cap,model):
         detection = model(frame)
         coord = detection.xyxy[0].numpy()
         size = coord.size
+        porcent = coord[:,4]
         hsv = cv2.cvtColor(frame,cv2.COLOR_BGR2HSV)
         rgb = cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
-        if size != 0:
+        if size != 0 and porcent >= 80:
             coord = [round(e) for e in coord[0][0:4]]
             crop = hsv[coord[1]:coord[3],coord[0]:coord[2]]
             crop_ = rgb[coord[1]:coord[3],coord[0]:coord[2]]
@@ -117,20 +117,16 @@ def System2(cap,model):
             Color = max(diccionario_colores.items(),key=lambda x: x[1])
             print(Color[0])
             
-            if Color == "countYellow":
-                print('Plastico Amarillo Detectado')
-            elif Color == "countRed":
-                print('Plastico Rojo Detectado')
+            if Color == "countYellow" or Color == "countRojo" or Color == "countBlue":
+                port.write(b'c')
             elif Color == "countGreen":
-                print('Plastico Verde Detectado')
-            elif Color == "countBlue":
-                print('Plastico Azul Detectado')
+                port.write(b'g')
             elif Color == "countTrans":
-                print('Plastico Transparente Detectado')           
+                port.write(b't')           
             elif Color == "countMalt":
-                print('Plastico Malta Detectado')
+                port.write(b'm')
             elif Color == "countWhite":
-                print('Plastico Blanco Detectado')
+                port.write(b'w')
             
             
         cv2.imshow('Detector de Color', np.squeeze(detection.render())) 
