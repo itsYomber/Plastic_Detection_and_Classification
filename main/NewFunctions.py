@@ -133,7 +133,8 @@ def System2(cap,model,port):
             elif Color == "countWhite":
                 print('White')
                 port.write(b'w')
-            
+        else:
+            port.write(b'o')    
             
         cv2.imshow('Detector de Color', np.squeeze(detection.render())) 
         k = cv2.waitKey(1)
