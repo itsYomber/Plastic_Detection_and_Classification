@@ -5,8 +5,7 @@ int MotorPlastic = 12;
 int ledGreen = 11;
 int ledWhite = 10;
 int ledMalta = 9;
-int ledTrans = 8;
-int ledColor = 7;
+int ledColor = 8;
 int option;
 
 void setup() {
@@ -17,7 +16,6 @@ void setup() {
   pinMode(ledGreen, OUTPUT);
   pinMode(ledWhite, OUTPUT);
   pinMode(ledMalta, OUTPUT);
-  pinMode(ledTrans, OUTPUT);
   pinMode(ledColor, OUTPUT);
 }
 
@@ -44,7 +42,6 @@ void loop() {
       digitalWrite(ledGreen, HIGH);
       digitalWrite(ledWhite, LOW);
       digitalWrite(ledMalta, LOW);
-      digitalWrite(ledTrans, LOW);
       digitalWrite(ledColor, LOW);
       delay(800);
     } else if (option == 'w')
@@ -52,7 +49,6 @@ void loop() {
       digitalWrite(ledGreen, LOW);
       digitalWrite(ledWhite, HIGH);
       digitalWrite(ledMalta, LOW);
-      digitalWrite(ledTrans, LOW);
       digitalWrite(ledColor, LOW);
       delay(800);
     } else if (option == 'm')
@@ -60,7 +56,6 @@ void loop() {
       digitalWrite(ledGreen, LOW);
       digitalWrite(ledWhite, LOW);
       digitalWrite(ledMalta, HIGH);
-      digitalWrite(ledTrans, LOW);
       digitalWrite(ledColor, LOW);
       delay(800);
     } else if (option == 't')
@@ -68,7 +63,6 @@ void loop() {
       digitalWrite(ledGreen, LOW);
       digitalWrite(ledWhite, LOW);
       digitalWrite(ledMalta, LOW);
-      digitalWrite(ledTrans, HIGH);
       digitalWrite(ledColor, LOW);
       delay(800);
     } else if (option == 'c')
@@ -76,14 +70,12 @@ void loop() {
       digitalWrite(ledGreen, LOW);
       digitalWrite(ledWhite, LOW);
       digitalWrite(ledMalta, LOW);
-      digitalWrite(ledTrans, LOW);
       digitalWrite(ledColor, HIGH);
       delay(800);
     }else {
       digitalWrite(ledGreen, LOW);
       digitalWrite(ledWhite, LOW);
       digitalWrite(ledMalta, LOW);
-      digitalWrite(ledTrans, LOW);
       digitalWrite(ledColor, LOW);
     }
   }

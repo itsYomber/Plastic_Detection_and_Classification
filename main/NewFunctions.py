@@ -70,9 +70,9 @@ def SystemIR(cap,port):
         prom = sum(elements)/len(elements)
         cv2.imshow('System IR',mask)        
         if prom >= 500:
-            port.write(b'P')
-        else:
             port.write(b'p')
+        else:
+            port.write(b'P')
         k = cv2.waitKey(1)
         if k==27:
             break
@@ -85,9 +85,9 @@ def System2(cap,model,port):
     red = np.array([[160,30,120],[179,255,255]]) #Checked
     green = np.array([[50,117,93],[101,247,240]])#Checked
     blue = np.array([[76,92,171],[188,255,255]])#Checked
-    trans = np.array([[6,9,75],[179,30,234]])#Checked
+    trans = np.array([[60,7,84],[190,29,174]])#Checked
     malt = np.array([[0,65,0],[11,240,150]]) #Checked
-    white = np.array([[215,215,215],[255,255,255]]) #Checked
+    white = np.array([[215,215,216],[252,255,240]]) #Checked
 
     while True:
         ret, frame = cap.read()
@@ -97,7 +97,8 @@ def System2(cap,model,port):
         porcent = coord[:,4]
         hsv = cv2.cvtColor(frame,cv2.COLOR_BGR2HSV)
         rgb = cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
-        if size != 0 and porcent >= 80:
+        if size != 0:
+            print('botella')
             coord = [round(e) for e in coord[0][0:4]]
             crop = hsv[coord[1]:coord[3],coord[0]:coord[2]]
             crop_ = rgb[coord[1]:coord[3],coord[0]:coord[2]]
@@ -114,18 +115,23 @@ def System2(cap,model,port):
             
             
             
-            Color = max(diccionario_colores.items(),key=lambda x: x[1])
-            print(Color[0])
+            ArrayColor = max(diccionario_colores.items(),key=lambda x: x[1])
+            Color = ArrayColor[0]
             
-            if Color == "countYellow" or Color == "countRojo" or Color == "countBlue":
+            if Color == "countYellow" or Color == "countRed" or Color == "countBlue":
+                print('Color')
                 port.write(b'c')
             elif Color == "countGreen":
+                print('Green')
                 port.write(b'g')
             elif Color == "countTrans":
+                print('Trans')
                 port.write(b't')           
             elif Color == "countMalt":
+                print('Malt')
                 port.write(b'm')
             elif Color == "countWhite":
+                print('White')
                 port.write(b'w')
             
             
