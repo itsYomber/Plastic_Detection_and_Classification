@@ -42,7 +42,7 @@ def System1(cap,model,port):
         register.insert(maximo)
         elements = register.get_elements()
         prom = sum(elements)/len(elements)
-        if prom >= 0.43:
+        if prom >= 0.40:
             port.write(b'B')
         else:
             port.write(b'b')
@@ -85,7 +85,7 @@ def System2(cap,model,port):
     red = np.array([[160,30,120],[179,255,255]]) #Checked
     green = np.array([[50,117,93],[101,247,240]])#Checked
     blue = np.array([[76,92,171],[188,255,255]])#Checked
-    trans = np.array([[60,7,84],[190,29,174]])#Checked
+    trans = np.array([[60,7,84],[220,29,174]])#Checked
     malt = np.array([[0,65,0],[11,240,150]]) #Checked
     white = np.array([[215,215,216],[252,255,240]]) #Checked
 
@@ -127,7 +127,7 @@ def System2(cap,model,port):
             elif Color == "countTrans":
                 print('Trans')
                 port.write(b't')           
-            elif Color == "countMalt":
+            elif Color == "countM alt":
                 print('Malt')
                 port.write(b'm')
             elif Color == "countWhite":

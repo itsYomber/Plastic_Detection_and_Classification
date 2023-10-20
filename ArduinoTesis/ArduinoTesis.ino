@@ -1,19 +1,19 @@
 #include <Servo.h>
 Servo motor;
-int ledBottle = 13;
-int MotorPlastic = 12;
-int ledGreen = 11;
-int ledWhite = 10;
-int ledMalta = 9;
+int ledBottle = 12;
+int ledPlastic = 13;
+int ledGreen = 9;
+int ledWhite = 11;
+int ledMalta = 7;
 int ledColor = 8;
-int ledTrans = 7;
+int ledTrans = 10;
 int option;
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
   pinMode(ledBottle, OUTPUT);
-  motor.attach(MotorPlastic);
+  pinMode(ledPlastic, OUTPUT);
   pinMode(ledGreen, OUTPUT);
   pinMode(ledWhite, OUTPUT);
   pinMode(ledMalta, OUTPUT);
@@ -35,10 +35,10 @@ void loop() {
       delay(250);
     } else if (option == 'P')
     {
-      motor.write(80);
+      digitalWrite(ledPlastic, LOW);
     } else if (option == 'p')
     {
-      motor.write(20);
+      digitalWrite(ledPlastic, HIGH);
     } else if (option == 'g')
     {
       digitalWrite(ledGreen, HIGH);
