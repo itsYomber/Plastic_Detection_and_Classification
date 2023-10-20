@@ -18,7 +18,7 @@ while True:
     print(coord)
 
     for data in porcent:
-        if data>0.6:
+        if data>0.43:
             print('bottle detect')
             print(data)
 
