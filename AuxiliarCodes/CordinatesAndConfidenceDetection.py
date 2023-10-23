@@ -17,8 +17,8 @@ while True:
     print(coord)
     print(porcent)
 
-    if len(porcent)>1:
-        maximo = max(porcent)
+    if len(porcent)>1: #Si existe más de un % (debido a varios objetos detectados en el frame)
+        maximo = max(porcent) #Se captura el porcenta más alto
         ptx = porcent.tolist()
         pos = ptx.index(maximo)
         datoxy = coord[pos]
