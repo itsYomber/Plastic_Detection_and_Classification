@@ -76,6 +76,7 @@ def System1(cap,model,port):
         if k==27:
             break
 
+    # Borrado de Ventana de Visualización
     cap.release()
     cv2.destroyWindow('Detector de Botellas')
     
