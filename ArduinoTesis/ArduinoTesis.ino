@@ -1,5 +1,4 @@
-#include <Servo.h>
-Servo motor;
+// declaración de variables
 int ledBottle = 12;
 int ledPlastic = 13;
 int ledGreen = 9;
@@ -10,7 +9,7 @@ int ledTrans = 10;
 int option;
 
 void setup() {
-  // put your setup code here, to run once:
+  // inicialización de frecuencia de trabajo y pines a usar
   Serial.begin(9600);
   pinMode(ledBottle, OUTPUT);
   pinMode(ledPlastic, OUTPUT);
@@ -22,24 +21,24 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  // verificación de ingreso de información
   if (Serial.available() > 0){
     option = Serial.read();
-    if (option == 'B')
+    if (option == 'B')         // detección de botella
     {
       digitalWrite(ledBottle, HIGH);
       delay(250);
-    } else if (option == 'b')
+    } else if (option == 'b')  // no detección de botella
     {
       digitalWrite(ledBottle, LOW);
       delay(250);
-    } else if (option == 'P')
+    } else if (option == 'P')  // detección de plástico
     {
       digitalWrite(ledPlastic, LOW);
-    } else if (option == 'p')
+    } else if (option == 'p')  // no detección de plástico
     {
       digitalWrite(ledPlastic, HIGH);
-    } else if (option == 'g')
+    } else if (option == 'g')  // verde detectado
     {
       digitalWrite(ledGreen, HIGH);
       digitalWrite(ledWhite, LOW);
@@ -47,7 +46,7 @@ void loop() {
       digitalWrite(ledColor, LOW);
       digitalWrite(ledTrans, LOW);
       delay(800);
-    } else if (option == 'w')
+    } else if (option == 'w')  // blanco detectado
     {
       digitalWrite(ledGreen, LOW);
       digitalWrite(ledWhite, HIGH);
@@ -55,7 +54,7 @@ void loop() {
       digitalWrite(ledColor, LOW);
       digitalWrite(ledTrans, LOW);
       delay(800);
-    } else if (option == 'm')
+    } else if (option == 'm')  // malta detectado
     {
       digitalWrite(ledGreen, LOW);
       digitalWrite(ledWhite, LOW);
@@ -63,7 +62,7 @@ void loop() {
       digitalWrite(ledColor, LOW);
       digitalWrite(ledTrans, LOW);
       delay(800);
-    } else if (option == 't')
+    } else if (option == 't')  // transparente detectado
     {
       digitalWrite(ledGreen, LOW);
       digitalWrite(ledWhite, LOW);
@@ -71,7 +70,7 @@ void loop() {
       digitalWrite(ledColor, LOW);
       digitalWrite(ledTrans, HIGH);
       delay(800);
-    } else if (option == 'c')
+    } else if (option == 'c')  // color detectado
     {
       digitalWrite(ledGreen, LOW);
       digitalWrite(ledWhite, LOW);
@@ -79,7 +78,7 @@ void loop() {
       digitalWrite(ledColor, HIGH);
       digitalWrite(ledTrans, LOW);
       delay(800);
-    }else {
+    }else {                    // ningún color detectado
       digitalWrite(ledGreen, LOW);
       digitalWrite(ledWhite, LOW);
       digitalWrite(ledMalta, LOW);
