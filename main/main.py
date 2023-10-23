@@ -22,7 +22,7 @@ hilo_S1 = threading.Thread(target=NF.System1, args=(cap0,model_3,uno))
 hilo_SIR = threading.Thread(target=NF.SystemIR, args=(cap1,uno))
 hilo_S2 = threading.Thread(target=NF.System2, args=(cap2,model_v5l,uno))
 
-# inicio de hilos asignados para cada funcion
+# ejecución de hilos asignados para cada funcion
 hilo_S1.start()
 hilo_SIR.start()
 hilo_S2.start()
