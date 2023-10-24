@@ -159,7 +159,7 @@ def System2(cap,model,port): #Clasificación de Color
 
             #Se realiza la visualización del sistema dependiendo de la clave del elemento/valor con mayor cantidad de pixeles.
             if Color == "countYellow" or Color == "countRed" or Color == "countBlue":
-                #Se realiza la validación de cuál clave es la clave para realizar la comunicación serial al arduino y dar visiblidad si pertenece al grupo de botellas.
+                #Se realiza la validación de cual es la clave para realizar la comunicación serial al arduino y dar visiblidad si pertenece al grupo de botellas.
                 #Si se encuentra que la botella tiene mayor pixeles de Amarillo, Rojo o Azul, se considera en el grupo de botellas de color.
                 print('Color')
                 port.write(b'c')
