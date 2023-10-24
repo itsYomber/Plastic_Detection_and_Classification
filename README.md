@@ -1,5 +1,5 @@
 # Plastic_Detection_and_Classification
-
+#Readme.
 #/AuxiliarCodes
   ColorClass.py: Detección a tiempo real de colores en diferentes espacios, en donde trabaja de forma dinámica con Trackbards máximos y mínimos para encontrar los   
                  rangos necesarios.
@@ -17,4 +17,4 @@
                    disminuyendo la latencia al ejecutar las diferentes funciones.
   main.py: Script central el cual realiza el funcionamiento de las funciones del Script "NewFunctions.py" de forma paralela y tomando los variables y parámetros 
            necesarios para la ejecución en paralela de todos los scripts de este proceso.
-#Readme.
+
