@@ -171,7 +171,7 @@ def System2(cap,model,port): #Clasificación de Color
                 #Si encuentra que la botella contiene una mayor cantidad de pixeles transaparentes, se considera en el grupo de botellas PET/Transparente
                 print('Trans')
                 port.write(b't')           
-            elif Color == "countM alt":
+            elif Color == "countMalt":
                 #Si encuentra que la botella contiene una mayor cantidad de pixeles malta, se considera en el grupo de botellas de malta.
                 print('Malt')
                 port.write(b'm')
